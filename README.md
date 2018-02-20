@@ -1,2 +1,2 @@
-# guia-ifc.github.io
+# https://guia-ifc.github.io
 Guia do Calouro
