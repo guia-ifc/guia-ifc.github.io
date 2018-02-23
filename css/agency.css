@@ -3,7 +3,7 @@ body {
   font-family: 'Roboto Slab', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
-p { 
+p {
   line-height: 1.75;
 }
 
@@ -17,7 +17,7 @@ a:hover {
 
 .text-primary {
   color: #379846 !important;
-} 
+}
 
 h1,
 h2,
@@ -243,8 +243,9 @@ header.masthead .intro-text .intro-heading {
   background: #e9ecef;
   border-radius: 4px;
   box-shadow: 0px 0px 7px -3px #000;
-  max-width: 278px;
+  width: 298px;
   opacity: 0;
+  z-index: 999;
 }
 
 #sidebar ul {
@@ -257,6 +258,7 @@ header.masthead .intro-text .intro-heading {
 
 #sidebar ul li {
   list-style: none;
+  user-select: none;
 }
 
 #sidebar ul li span {

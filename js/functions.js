@@ -16,6 +16,10 @@
 		var canGetFile = true;
 		
 		$('#sidebar ul li span').click(function () {
+
+			if ($(this).hasClass('active') || !$(this).data('conteudo')) 
+				return ;
+
 			$('#sidebar ul li span').removeClass('active');
 			$(this).addClass('active');
 			
@@ -26,21 +30,23 @@
 				
 				$.get( "duvidas/" + file, function( data ) {
 					var $conteudo = $( ".conteudo-duvidas");
+					var $conteudoContainer = $( "#duvidas .container.duvidas");
+					var marLeft = $conteudoContainer.css('margin-left')
 
-					$conteudo.animate({				
+					$conteudoContainer.animate({				
 						opacity: '0',
 						marginLeft : '1800px'
 					}, 400, 'easeInOutExpo', function () {
 						$conteudo.html( data );
 
-						$conteudo.css({
+						$conteudoContainer.css({
 							marginLeft : '-1800px'	
 						})
 					});			
  
-					$conteudo.animate({				
+					$conteudoContainer.animate({				
 						opacity: '1',
-						marginLeft : '0px'
+						marginLeft : marLeft
 					}, 400, 'easeInOutExpo', function () {
 						canGetFile = true;
 					});
@@ -69,9 +75,9 @@
 			if (windowTop > 1000) {
 
 				$sticky.animate({
-					margin: '-160px 0 0 84px',						
+					margin: '-160px 0 0 54px',						
 					opacity: '1'
-				}, 1000, 'easeInOutExpo');
+				}, 600, 'easeInOutExpo');
 			}
 
 

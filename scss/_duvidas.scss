@@ -4,7 +4,7 @@
 	background: $gray-200;
 	border-radius: 4px;
 	box-shadow: 0px 0px 7px -3px #000;
-	max-width: 278px;
+	width: 298px;
 	opacity: 0; 
     z-index: 999;
 
@@ -16,7 +16,8 @@
  	            padding-start: 0px;
 
 		li {
-			list-style: none;
+			list-style: none; 
+			user-select: none;
 
 			& span {
 				color: $primary;
