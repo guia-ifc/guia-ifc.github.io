@@ -1,6 +1,7 @@
-body {
+html, body {
   overflow-x: hidden;
   font-family: 'Roboto Slab', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  max-width: 100%;
 }
 
 p {
@@ -237,8 +238,9 @@ header.masthead .intro-text .intro-heading {
   border: 0 !important;
 }
 
-#sidebar {
-  margin: -160px 0 0 -900px;
+#sidebar, #sidebar2 {
+  margin: -160px 0 0 54px;
+  display: none;
   padding: 17px 25px;
   background: #e9ecef;
   border-radius: 4px;
@@ -248,7 +250,11 @@ header.masthead .intro-text .intro-heading {
   z-index: 999;
 }
 
-#sidebar ul {
+#sidebar.loaded, #sidebar2.loaded {
+  display: inherit;
+}
+
+#sidebar ul, #sidebar2 ul {
   -webkit-padding-start: 0px;
   -moz-padding-start: 0px;
   -ms-padding-start: 0px;
@@ -256,38 +262,88 @@ header.masthead .intro-text .intro-heading {
   padding-start: 0px;
 }
 
-#sidebar ul li {
+#sidebar ul li, #sidebar2 ul li {
   list-style: none;
   user-select: none;
 }
 
-#sidebar ul li span {
+#sidebar ul li span, #sidebar2 ul li span {
   color: #379846;
   cursor: pointer;
   margin-left: 10px;
   transition: .3s;
 }
 
-#sidebar ul li span.active {
+#sidebar ul li span.active, #sidebar2 ul li span.active {
   margin-left: 20px;
   text-decoration: underline;
 }
 
-#sidebar ul li span:hover, #sidebar ul li span:focus {
+#sidebar ul li span:hover, #sidebar ul li span:focus, #sidebar2 ul li span:hover, #sidebar2 ul li span:focus {
   margin-left: 20px;
 }
 
-#sidebar ul li ul {
+#sidebar ul li ul, #sidebar2 ul li ul {
   margin-bottom: 10px;
 }
 
-#sidebar ul li ul li {
+#sidebar ul li ul li, #sidebar2 ul li ul li {
   margin-bottom: 5px;
+}
+
+#sidebar2 {
+  margin: 0;
+  display: none;
+  text-align: justify;
 }
 
 #duvidas {
   transition: .3s;
   padding-top: 85px !important;
+}
+
+.conteudo-duvidas {
+  text-align: justify;
+}
+
+@media (max-width: 1880px) {
+  #sidebar {
+    display: none !important;
+  }
+  #sidebar2 {
+    display: block !important;
+    opacity: 1 !important;
+  }
+  .agrupa-side {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+  .conteudo-duvidas {
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 991px) {
+  .agrupa-side {
+    flex-wrap: wrap !important;
+    padding: 0 15px;
+  }
+  .inside-sidebar {
+    width: 100% !important;
+  }
+  .conteudo-duvidas {
+    padding: 0 0px !important;
+    margin-top: 30px !important;
+  }
+  #sidebar2 {
+    width: 100% !important;
+    font-size: 14px;
+  }
+  .navbar-brand {
+    margin-top: 10px;
+    text-align: center;
+  }
 }
 
 #portfolio .portfolio-item {
@@ -636,6 +692,12 @@ header.masthead .intro-text .intro-heading {
   }
 }
 
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
 .team-member {
   margin-bottom: 50px;
   text-align: center;
@@ -714,6 +776,17 @@ section#contact :-ms-input-placeholder {
   font-weight: 700;
   color: #ced4da;
   font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.email-footer {
+  color: #000;
+  text-decoration: none;
+  transition: .3s;
+}
+
+.email-footer:hover, .email-footer:focus {
+  color: #333;
+  text-decoration: underline;
 }
 
 footer {

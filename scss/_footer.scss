@@ -1,4 +1,17 @@
 // Styling for the footer
+
+.email-footer {
+  color: #000;
+  text-decoration: none;
+  transition: .3s;
+
+  &:hover,
+  &:focus {
+    color: #333;
+    text-decoration: underline;
+  }
+}
+
 footer {
   padding: 25px 0;
   text-align: center;

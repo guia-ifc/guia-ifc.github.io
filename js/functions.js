@@ -1,54 +1,70 @@
 (function($) {
   "use strict";
+  
+	var scrollEventHandler = function()
+	{
+	  window.scroll(0, window.pageYOffset)
+	}
+
+	window.addEventListener("scroll", scrollEventHandler, false);
+
+	var $sticky = $('.sticky');
+	var $stickyrStopper = $('#team');
 
 	$(document).ready(function () {
+		$sticky.addClass('loaded');
+
+		var doc = document.documentElement;
+		var top = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
 
 		var windowTop = $(window).scrollTop(); // returns number
-
+		
 		if (windowTop > 1000) {
 
 			$sticky.animate({
-				margin: '-160px 0 0 84px',						
+				margin: '-160px 0 0 54px',						
 				opacity: '1'
 			}, 1000, 'easeInOutExpo');
 		}
 
 		var canGetFile = true;
 		
-		$('#sidebar ul li span').click(function () {
+		var $sides = $('#sidebar ul li span, #sidebar2 ul li span');
+
+		$sides.click(function () {
 
 			if ($(this).hasClass('active') || !$(this).data('conteudo')) 
 				return ;
 
-			$('#sidebar ul li span').removeClass('active');
+			$sides.removeClass('active');
 			$(this).addClass('active');
 			
 			var file = $(this).data('conteudo') + '.html';
 
 			if (canGetFile) {			
 				canGetFile = false;	
+
+				var $self = $(this);
 				
 				$.get( "duvidas/" + file, function( data ) {
 					var $conteudo = $( ".conteudo-duvidas");
-					var $conteudoContainer = $( "#duvidas .container.duvidas");
-					var marLeft = $conteudoContainer.css('margin-left')
+					var $conteudoContainer = $( "#duvidas .conteudo-duvidas");
 
 					$conteudoContainer.animate({				
 						opacity: '0',
-						marginLeft : '1800px'
 					}, 400, 'easeInOutExpo', function () {
 						$conteudo.html( data );
 
-						$conteudoContainer.css({
-							marginLeft : '-1800px'	
-						})
+						if ($self.closest('#sidebar2').length) {
+							$("html, body").animate({ scrollTop: $('#sidebar2').offset().top + 350 }, 300);
+						}
+
 					});			
  
 					$conteudoContainer.animate({				
 						opacity: '1',
-						marginLeft : marLeft
 					}, 400, 'easeInOutExpo', function () {
-						canGetFile = true;
+						canGetFile = true;						
 					});
 				});
 			}
@@ -56,9 +72,6 @@
 		});
 
 	});
-
-	var $sticky = $('.sticky');
-	var $stickyrStopper = $('.sticky-stopper');
 
 	if ($sticky.length) { // make sure ".sticky" element exists
 
@@ -75,20 +88,19 @@
 			if (windowTop > 1000) {
 
 				$sticky.animate({
-					margin: '-160px 0 0 54px',						
 					opacity: '1'
 				}, 600, 'easeInOutExpo');
 			}
 
 
 			windowTop += 172;
-
-			if (stopPoint < windowTop) {
-				$sticky.css({ position: 'absolute', top: 2216 });
-			} else if (stickyTop < windowTop+stickOffset) {
-				$sticky.css({ position: 'fixed', top: 333 });
+			
+			if (windowTop > 1990 ) {
+				$sticky.css({ position: 'absolute', top: 2250, left: 0 });
+			} else if (windowTop > 1535) {
+				$sticky.css({ position: 'fixed', top: 433, left: 0 });
 			} else {
-				$sticky.css({position: 'absolute', top: 'initial'});
+				$sticky.css({position: 'absolute', top: 'initial', left: 0});
 			}
 		});
 

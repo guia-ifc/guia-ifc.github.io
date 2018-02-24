@@ -1,5 +1,6 @@
-#sidebar { 
-	margin: -160px 0 0 -900px;
+#sidebar, #sidebar2 { 
+	margin: -160px 0 0 54px;	
+    display: none;
 	padding: 17px 25px;
 	background: $gray-200;
 	border-radius: 4px;
@@ -7,6 +8,10 @@
 	width: 298px;
 	opacity: 0; 
     z-index: 999;
+    
+    &.loaded {
+    	display: inherit;
+    }
 
 	ul { 
 	    -webkit-padding-start: 0px;
@@ -48,7 +53,64 @@
 	}
 }
 
+#sidebar2 {
+	margin: 0;	
+    display: none;
+	text-align: justify;
+}
+
 #duvidas {
 	transition: .3s; 
     padding-top: 85px!important;	
+}
+
+.conteudo-duvidas {
+	text-align: justify;
+}
+
+@media (max-width: 1880px) {
+	#sidebar {
+		display: none !important;
+	}
+
+	#sidebar2 {
+		display: block !important;
+		opacity: 1 !important;
+	}
+
+	.agrupa-side {
+		display: flex;
+		flex-wrap: nowrap;
+		justify-content: space-between;
+	}
+
+	.conteudo-duvidas {
+		padding: 0 20px;
+	}
+}
+
+@media (max-width: 991px) {
+	.agrupa-side {
+		flex-wrap: wrap !important;
+		padding: 0 15px;
+	}
+
+	.inside-sidebar {
+		width: 100% !important;
+	}
+
+	.conteudo-duvidas {
+		padding: 0 0px !important;
+		margin-top: 30px !important;
+	}
+
+	#sidebar2 {
+		width: 100% !important;
+		font-size: 14px;
+	}
+ 
+ 	.navbar-brand {
+ 		margin-top: 10px; 	
+ 		text-align: center;   
+ 	}
 }
